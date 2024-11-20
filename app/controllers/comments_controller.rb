@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params.merge(user: Current.user))
 
     if @comment.save
-      redirect_to @comment, notice: "Comment was successfully created."
+      redirect_to @comment.post, notice: "Comment was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: "Comment was successfully updated.", status: :see_other
+      redirect_to @comment.post, notice: "Comment was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   def destroy
     @comment.destroy!
-    redirect_to comments_path, notice: "Comment was successfully destroyed.", status: :see_other
+    redirect_to @comment.post, notice: "Comment was successfully destroyed.", status: :see_other
   end
 
   private
