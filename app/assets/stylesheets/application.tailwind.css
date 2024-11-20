@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply container h-full flex flex-col mx-auto p-8 pb-0 font-mono;
+}
+main {
+  @apply border-2 border-black bg-white px-4 py-8 relative mb-4 before:absolute before:inset-0 before:-z-10 before:transform before:translate-x-2 before:translate-y-2 before:bg-[radial-gradient(circle_at_center,#000_.05rem,transparent_0),radial-gradient(circle_at_center,#000_.05rem,transparent_0)] before:[background-size:.2rem_.2rem] before:[background-position:0_0,.1rem_.1rem] before:[background-color:initial];
+}
+h1 {
+  @apply absolute -top-4 bg-white py-px px-2 -mx-2 uppercase font-bold text-lg;
+}
+form > input[type="text"],
+form > input[type="email"],
+form > input[type="password"] {
+  @apply w-full mb-8 focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
+}
+input[type="submit"] {
+  @apply font-semibold border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500;
+}
+a[href] {
+  @apply hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500;
+}

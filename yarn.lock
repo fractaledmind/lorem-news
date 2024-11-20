@@ -220,6 +220,13 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.2.200.tgz#7f56b3313762dbb85b64490aa33c5f431419aafd"
   integrity sha512-gVmi3MabEa+Bkatvw0/k1Y3WTidcIf3qNbb9L8qc+AmT2UmkVqUZhJpSLvKmH10twCYIGzn7yySW/lOpg81Duw==
 
+"@tailwindcss/forms@^0.5.9":
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.9.tgz#b495c12575d6eae5865b2cbd9876b26d89f16f61"
+  integrity sha512-tM4XVr2+UVTxXJzey9Twx48c1gcxFStqn1pQz0tRsX8o3DvxhN5oY5pvyAbUx7VTaZxpej4Zzvc6h+1RJBzpIg==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
@@ -595,6 +602,11 @@ micromatch@^4.0.4, micromatch@^4.0.8:
   dependencies:
     braces "^3.0.3"
     picomatch "^2.3.1"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimatch@^9.0.4:
   version "9.0.5"
