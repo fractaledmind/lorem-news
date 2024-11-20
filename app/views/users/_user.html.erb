@@ -1,7 +1,18 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Email address:</strong>
-    <%= user.email_address %>
-  </p>
-
-</div>
+<dl class="grid grid-cols-[fit-content(100%)_1fr] gap-x-2">
+  <dt><span class="italic">user</span>:</dt>
+  <dd>
+    <%= @user.screen_name %>
+  </dd>
+  <dt><span class="italic">created</span>:</dt>
+  <dd>
+    <abbr title="<%= user.created_at.to_formatted_s %>" class="cursor-help"><%= time_tag user.created_at, time_ago_in_words(user.created_at) %> ago</abbr>
+  </dd>
+  <dt><span class="italic">posts</span>:</dt>
+  <dd>
+    <%= @user.posts.size %>
+  </dd>
+  <dt><span class="italic">comments</span>:</dt>
+  <dd>
+    <%= @user.comments.size %>
+  </dd>
+</dl>
