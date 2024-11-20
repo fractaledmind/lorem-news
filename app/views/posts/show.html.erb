@@ -1,16 +1,29 @@
-<%= render @post %>
+<% content_for :title, @post.title %>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
+<h1><%= content_for(:title) %></h1>
+<%= link_to "← Back to posts", posts_path, class: "hlink" %>
 
-  <% if @post.user == Current.user %>
-    <%= link_to "Edit this post", edit_post_path(@post) %> |
-    <%= button_to "Destroy this post", @post, method: :delete %>
-  <% end %>
-</div>
+<%= render "posts/metadata", post: @post, class: "absolute top-4" %>
 
-<% if Current.user.present? %>
-  <%= render "comments/form", comment: @post.comments.new %>
+<br>
+
+<%= simple_format @post.body %>
+
+<% if @post.user == Current.user %>
+  <br>
+
+  <div class="flex gap-2">
+    <%= link_to "→ Edit", edit_post_path(@post), class: "button" %>
+    <%= button_to "× Delete", @post, method: :delete, class: "dangerous" %>
+  </div>
 <% end %>
 
-<%= render @post.comments %>
+<br>
+<hr class="border-black border-t-2">
+<br>
+
+<% if Current.user.present? %>
+  <%= render "comments/form", comment: @comment || @post.comments.new %>
+<% end %>
+
+<%= render "comments/collection", comments: @post.comments.order(created_at: :desc) %>
