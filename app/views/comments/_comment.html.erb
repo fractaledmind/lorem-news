@@ -1,5 +1,4 @@
 <div id="<%= dom_id comment %>">
-  <p>
-    <%= comment.body %>
-  </p>
+  <%= render "comments/metadata", comment: comment %>
+  <%= simple_format comment.body %>
 </div>
