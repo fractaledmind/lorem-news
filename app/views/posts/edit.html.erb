@@ -1,12 +1,10 @@
 <% content_for :title, "Editing post" %>
 
-<h1>Editing post</h1>
+<h1><%= content_for(:title) %></h1>
+<%= link_to "← Back to posts", posts_path, class: 'hlink' %>
 
 <%= render "form", post: @post %>
 
-<br>
-
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+<div class="inline-block -ml-[0.15rem]">
+  <%= link_to "← Discard changes", @post, class: "button ghost" %>
 </div>
