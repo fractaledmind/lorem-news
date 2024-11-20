@@ -1,4 +1,4 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post, class: "contents") do |form| %>
   <% if post.errors.any? %>
     <div role="alert">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -21,7 +21,7 @@
     <%= form.textarea :body, rows: 10 %>
   </div>
 
-  <div>
+  <div class="inline-block">
     <%= form.submit %>
   </div>
 <% end %>
