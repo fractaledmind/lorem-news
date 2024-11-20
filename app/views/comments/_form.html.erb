@@ -1,7 +1,7 @@
 <%= form_with(model: [@post, comment]) do |form| %>
   <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+    <div role="alert">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being submitted:</h2>
 
       <ul>
         <% comment.errors.each do |error| %>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
+    <%= form.label :body, class: "sr-only" %>
+    <%= form.textarea :body, placeholder: "What are you thinking?", class: "w-2/3", rows: 3 %>
   </div>
 
   <div>
