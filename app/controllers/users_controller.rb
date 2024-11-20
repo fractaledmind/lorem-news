@@ -2,11 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   allow_unauthenticated_access only: %i[ new create ]
 
-  # GET /users
-  def index
-    @users = User.all
-  end
-
   # GET /users/1
   def show
   end
@@ -25,7 +20,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: "User was successfully created."
+      start_new_session_for @user
+      redirect_to @user, notice: "Welcome! You are now signed up."
     else
       render :new, status: :unprocessable_entity
     end

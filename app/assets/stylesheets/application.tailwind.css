@@ -11,10 +11,18 @@ main {
 h1 {
   @apply absolute -top-4 bg-white py-px px-2 -mx-2 uppercase font-bold text-lg;
 }
+form > div {
+  @apply mb-8;
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  @apply w-full focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
+}
 form > input[type="text"],
 form > input[type="email"],
 form > input[type="password"] {
-  @apply w-full mb-8 focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
+  @apply mb-8;
 }
 input[type="submit"] {
   @apply font-semibold border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500;
