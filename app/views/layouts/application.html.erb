@@ -27,5 +27,19 @@
     <main>
       <%= yield %>
     </main>
+
+    <div class="absolute top-2 left-0 right-0 text-center">
+      <% if notice.present? %>
+        <p role="alert" class="py-1 px-2 bg-white border border-green-500 text-green-500 font-medium inline-block">
+          <%= notice.html_safe %>
+        </p>
+      <% end %>
+
+      <% if alert.present? %>
+        <p role="alert" class="py-1 px-2 bg-white border border-red-500 text-red-500 font-medium inline-block">
+          <%= alert.html_safe %>
+        </p>
+      <% end %>
+    </div>
   </body>
 </html>
