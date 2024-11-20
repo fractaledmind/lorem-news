@@ -1,5 +1,37 @@
-<% content_for :title, "New user" %>
+<% content_for :title, "Sign up" %>
 
-<h1>New user</h1>
+<h1><%= content_for(:title) %></h1>
 
-<%= render "form", user: @user %>
+<%= form_with(model: @user, class: "contents") do |form| %>
+  <% if @user.errors.any? %>
+    <div role="alert">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password, required: true, autocomplete: "new-password", aria: { describedby: form.field_id(:password, :help) } %>
+    <small id="<%= form.field_id(:password, :help) %>">8 characters minimum</small>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
+  </div>
+
+  <div class="inline-block">
+    <%= form.submit %>
+  </div>
+<% end %>
