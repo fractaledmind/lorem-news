@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :edit, :update, :destroy], shallow: true
+  end
   resources :users, except: [:index]
   resource :session
   resources :passwords, param: :token

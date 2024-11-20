@@ -1,19 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
-
-  # GET /comments
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  def show
-  end
-
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
+  before_action :set_post, only: %i[ create ]
+  before_action :set_comment, only: %i[ edit update destroy ]
 
   # GET /comments/1/edit
   def edit
@@ -21,7 +8,7 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.new(comment_params.merge(user: Current.user))
 
     if @comment.save
       redirect_to @comment, notice: "Comment was successfully created."
@@ -47,12 +34,17 @@ class CommentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params.expect(:post_id))
+    end
+
     def set_comment
       @comment = Comment.find(params.expect(:id))
+      raise NotAuthorized unless @comment.user == Current.user
     end
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.expect(comment: [ :post_id, :user_id, :body ])
+      params.expect(comment: [ :body ])
     end
 end
