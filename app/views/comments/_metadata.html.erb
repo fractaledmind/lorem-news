@@ -1,0 +1,16 @@
+<small class="<%= local_assigns[:class] %> text-sm font-normal">
+  <% if controller_name.presence_in ["users", "comments"] %>
+    on <%= link_to comment.post.title, comment.post %>
+  <% elsif controller_name.presence_in ["posts", "comments"] %>
+    by <%= link_to (comment.user == Current.user ? "you" : comment.user.screen_name), user_path(comment.user) %>
+  <% end %>
+
+  <span>&middot;</span>
+
+  <abbr title="<%= comment.created_at.to_formatted_s %>" class="cursor-help"><%= time_tag comment.created_at, time_ago_in_words(comment.created_at) %> ago</abbr>
+
+  <% if comment.created_at != comment.updated_at %>
+    <span>&middot;</span>
+    <em>edited</em>
+  <% end %>
+</small>
