@@ -1,6 +1,6 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
-    <div style="color: red">
+    <div role="alert">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
       <ul>
@@ -12,13 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "!w-2/3" %>
   </div>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
+    <%= form.label :body %>
+    <%= form.textarea :body, rows: 10 %>
   </div>
 
   <div>

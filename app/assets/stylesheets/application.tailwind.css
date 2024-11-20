@@ -11,12 +11,19 @@ main {
 h1 {
   @apply absolute -top-4 bg-white py-px px-2 -mx-2 uppercase font-bold text-lg;
 }
+.hlink {
+  @apply absolute -top-4 right-4 bg-white py-px px-2 -mx-2 border-2 border-transparent hover:border-black hover:!no-underline focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
+}
 form > div {
   @apply mb-8;
 }
+form label {
+  @apply block;
+}
 form input[type="text"],
 form input[type="email"],
-form input[type="password"] {
+form input[type="password"],
+form textarea {
   @apply w-full focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
 }
 form > input[type="text"],
@@ -29,4 +36,15 @@ input[type="submit"] {
 }
 a[href] {
   @apply hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500;
+}
+form > [role="alert"] {
+  @apply text-red-500 font-medium mb-8;
+
+  & h2 {
+    @apply font-black text-sm uppercase tracking-normal flex items-center;
+  }
+
+  & ul {
+    @apply list-[square] list-inside pl-4 mt-2;
+  }
 }
