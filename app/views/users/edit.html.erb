@@ -1,12 +1,31 @@
 <% content_for :title, "Editing user" %>
 
-<h1>Editing user</h1>
+<h1><%= content_for(:title) %></h1>
+<%= link_to "→ Change password", edit_password_url(@user.password_reset_token), class: "hlink" %>
 
-<%= render "form", user: @user %>
+<%= form_with(model: @user, class: "contents") do |form| %>
+  <% if @user.errors.any? %>
+    <div role="alert">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-<br>
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+  <div>
+    <%= form.label :email_address %>
+    <%= form.text_field :email_address %>
+  </div>
+
+  <div class="inline-block">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<div class="inline-block -ml-[0.15rem]">
+  <%= button_to "× Permanently delete", @user, method: :delete, class: "dangerous",  form: { data: { turbo_confirm: "Are you sure?" }} %>
 </div>
