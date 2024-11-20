@@ -1,0 +1,16 @@
+<small class="<%= local_assigns[:class] %> text-sm font-normal">
+  by <%= link_to (post.user == Current.user ? "you" : post.user.screen_name), user_path(post.user) %>
+
+  <span>&middot;</span>
+
+  <abbr title="<%= post.created_at.to_formatted_s %>" class="cursor-help"><%= time_tag post.created_at, time_ago_in_words(post.created_at) %> ago</abbr>
+
+  <span>&middot;</span>
+
+  <%= link_to pluralize(post.comments.count, "comment"), url_for(anchor: :comments) %>
+
+  <% if post.created_at != post.updated_at %>
+    <span>&middot;</span>
+    <em>edited</em>
+  <% end %>
+</small>
