@@ -1,6 +1,8 @@
 <% content_for :title, "Recent Posts" %>
 
 <h1><%= content_for(:title) %></h1>
-<%= link_to "+ New post", new_post_path, class: "hlink" %>
+<% if Current.user.present? %>
+  <%= link_to "+ New post", new_post_path, class: "hlink" %>
+<% end %>
 
 <%= render "collection", posts: @posts %>

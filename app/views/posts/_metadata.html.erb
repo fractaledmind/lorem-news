@@ -7,7 +7,10 @@
 
   <span>&middot;</span>
 
-  <%= link_to pluralize(post.comments.count, "comment"), url_for(anchor: :comments) %>
+  <%= link_to_if(
+        controller_name == "posts" && action_name == "show",
+        pluralize(post.comments.count, "comment"),
+        url_for(anchor: :comments)) %>
 
   <% if post.created_at != post.updated_at %>
     <span>&middot;</span>

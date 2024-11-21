@@ -50,7 +50,7 @@
 
   input[type="submit"],
   .button,
-  .button_to button {
+  .button_to button:not(.link) {
     @apply inline-block font-semibold border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white hover:!no-underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500;
   }
   .dangerous {
