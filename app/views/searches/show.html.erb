@@ -9,4 +9,6 @@
 <hr class="border-black border-t-2">
 <br>
 
-<%= render "posts/collection", posts: @posts, message: "No posts found" %>
+<% if params[:query] %>
+  <%= render "posts/collection", posts: @posts, message: "No posts found" %>
+<% end %>

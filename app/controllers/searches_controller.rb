@@ -2,6 +2,10 @@ class SearchesController < ApplicationController
   allow_unauthenticated_access
 
   def show
-    @posts = Post.search(params[:query])
+    @posts = if params[:query].present?
+      Post.search(params[:query])
+    else
+      Post.none
+    end
   end
 end
