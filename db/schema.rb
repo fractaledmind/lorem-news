@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_21_003230) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_21_030746) do
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -21,17 +21,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_003230) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "title", null: false
-    t.text "body", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.json "tags", default: [], null: false
-    t.index ["title"], name: "index_posts_on_title", unique: true
-    t.index ["user_id"], name: "index_posts_on_user_id"
-    t.check_constraint "JSON_TYPE(tags) = 'array'", name: "post_tags_is_array"
-  end
+# Could not dump table "posts" because of following StandardError
+#   Unknown type '' for column 'public_id'
+
 
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false

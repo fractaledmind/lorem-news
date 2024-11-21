@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authorize_post, only: %i[ edit update destroy ]
+  before_action :ensure_canonical_url, only: %i[ show edit update destroy ]
   allow_unauthenticated_access only: %i[ index show ]
 
   # GET /posts
@@ -9,7 +11,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    @post = Post.find(params[:id])
   end
 
   # GET /posts/new
@@ -51,7 +52,14 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params.expect(:id))
+    end
+
+    def authorize_post
       raise NotAuthorized unless @post.user == Current.user
+    end
+
+    def ensure_canonical_url
+      redirect_to @post if @post.to_param != params[:id]
     end
 
     # Only allow a list of trusted parameters through.

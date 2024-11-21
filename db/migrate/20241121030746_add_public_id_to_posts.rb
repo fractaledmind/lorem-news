@@ -1,0 +1,7 @@
+class AddPublicIdToPosts < ActiveRecord::Migration[8.0]
+  def change
+    add_column :posts, :public_id, :virtual,
+      as: "HEX(id) || FORMAT('%X', unixepoch(created_at))",
+      stored: true, index: true
+  end
+end
