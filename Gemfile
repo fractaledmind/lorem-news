@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "litestream", "~> 0.12.0"
+
+gem "minio", "~> 0.4.0"

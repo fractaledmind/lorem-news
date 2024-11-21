@@ -183,6 +183,11 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
+    minio (0.4.0)
+    minio (0.4.0-aarch64-linux)
+    minio (0.4.0-arm64-darwin)
+    minio (0.4.0-x86_64-darwin)
+    minio (0.4.0-x86_64-linux)
     minitest (5.25.1)
     msgpack (1.7.5)
     net-imap (0.5.1)
@@ -399,6 +404,7 @@ DEPENDENCIES
   jsbundling-rails
   kamal
   litestream (~> 0.12.0)
+  minio (~> 0.4.0)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
