@@ -11,6 +11,18 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2024_11_21_043423) do
+  create_table "_litestream_lock", id: false, force: :cascade do |t|
+    t.integer "id"
+  end
+
+  create_table "_litestream_seq", force: :cascade do |t|
+    t.integer "seq"
+  end
+
+  create_table "_litestream_verification", force: :cascade do |t|
+    t.binary "uuid"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -21,9 +33,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_043423) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-# Could not dump table "posts" because of following StandardError
-#   Unknown type '' for column 'public_id'
-
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.json "tags", default: [], null: false
+    t.virtual "public_id", type: :string, as: "HEX(id) || FORMAT('%X', unixepoch(created_at))", stored: false
+    t.index ["public_id"], name: "index_posts_on_public_id", unique: true
+    t.index ["title"], name: "index_posts_on_title", unique: true
+    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.check_constraint "JSON_TYPE(tags) = 'array'", name: "post_tags_is_array"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
