@@ -1,0 +1,12 @@
+<h1>Site search</h1>
+
+<%= form_with url: search_path, method: :get, class: "flex gap-4" do |form| %>
+  <%= form.search_field :query, value: params[:query] %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<br>
+<hr class="border-black border-t-2">
+<br>
+
+<%= render "posts/collection", posts: @posts, message: "No posts found" %>

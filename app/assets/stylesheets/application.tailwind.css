@@ -33,6 +33,7 @@
     & input[type="text"],
     & input[type="email"],
     & input[type="password"],
+    & input[type="search"],
     & textarea {
       @apply w-full focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500;
     }

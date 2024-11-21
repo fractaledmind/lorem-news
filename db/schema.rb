@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_21_030746) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_21_043423) do
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -46,4 +46,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_21_030746) do
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
+
+  # Virtual tables defined in this database.
+  # Note that virtual tables may not work with other database engines. Be careful if changing database.
+  create_virtual_table "post_documents", "fts5", ["title", "body", "content=''", "contentless_delete=1", "tokenize='porter unicode61 remove_diacritics 2'"]
 end

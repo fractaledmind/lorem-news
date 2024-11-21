@@ -23,7 +23,13 @@
     </table>
   <% else %>
     <div class="flex items-center justify-center gap-2">
-      <span class="">No posts yet… Want to be the first?</span>
+      <span class="">
+        <% if local_assigns[:message] %>
+          <%= local_assigns[:message] %>
+        <% else %>
+          No posts yet… Want to be the first?
+        <% end %>
+      </span>
     </div>
   <% end %>
 </div>
