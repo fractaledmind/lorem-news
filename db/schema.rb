@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_20_173044) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_21_003230) do
   create_table "comments", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "user_id", null: false
@@ -27,8 +27,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_173044) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "tags", default: [], null: false
     t.index ["title"], name: "index_posts_on_title", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
+    t.check_constraint "JSON_TYPE(tags) = 'array'", name: "post_tags_is_array"
   end
 
   create_table "sessions", force: :cascade do |t|

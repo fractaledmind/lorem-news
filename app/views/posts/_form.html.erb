@@ -21,6 +21,41 @@
     <%= form.textarea :body, rows: 10 %>
   </div>
 
+  <fieldset>
+    <legend>
+      <%= Post.human_attribute_name(:tags) %>
+    </legend>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <%= form.collection_check_boxes(:tags,
+            Post.unique_tags,
+            :itself, :itself) do |builder| %>
+        <%= builder.label(class: "bg-gray-200 hover:border-gray-600 cursor-pointer inline-flex items-center border border-transparent py-1 px-2") do %>
+          <%= builder.check_box(checked: form.object.tags.include?(builder.text.to_s), class: "text-black border border-black") %>
+          <span class="ml-2"><%= builder.text %></span>
+        <% end %>
+      <% end %>
+
+      <div data-controller="clone" class="contents">
+        <template data-clone-target="template">
+          <%= form.text_field :tags,
+                value: nil,
+                multiple: true,
+                class: "bg-gray-200 border-gray-200 py-1 px-2 !w-24",
+                placeholder: "New tag" %>
+        </template>
+        <!-- clones will be inserted here -->
+
+        <button type="button"
+                class="button ghost"
+                title="Add a new role"
+                data-action="clone#insert">
+          + Add
+        </button>
+      </div>
+    </div>
+  </fieldset>
+
   <div class="inline-block">
     <%= form.submit %>
   </div>

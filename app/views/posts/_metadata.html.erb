@@ -16,4 +16,11 @@
     <span>&middot;</span>
     <em>edited</em>
   <% end %>
+
+  <% if post.tags? %>
+    <span>&middot;</span>
+    <% post.tags.each do |tag| %>
+      <span class="bg-gray-200 py-1 px-2"><%= tag %></span>
+    <% end %>
+  <% end %>
 </small>
