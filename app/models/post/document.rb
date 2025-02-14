@@ -14,7 +14,7 @@ class Post
       select(
         :rowid,
         "row_number() OVER (ORDER BY rank) AS rank_number",
-        "rank AS score"
+        rank: :score
       )
       .where("#{table_name} MATCH ?", query)
       .limit(k)
